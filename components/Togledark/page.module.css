@@ -1,0 +1,45 @@
+.btn {
+  background-color: white;
+  border-radius: 28px;
+  padding: 7px;
+  position: fixed;
+  bottom: 13px;
+  right: 11px;
+  width: fit-content;
+  z-index: 1001;
+}
+.SliderRight {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 25%;
+  height: 100vh;
+  background-color: black;
+  transform: translateY(100%);
+  transition: transform 0.5s ease-in-out 0.2s;
+  z-index: 1000;
+}
+
+.SliderRight.active {
+  transform: translateY(0);
+}
+.ABBtn {
+  z-index: 1001;
+  display: none;
+  position: fixed;
+  bottom: 74px;
+  right: 10px;
+  background-color: #737373;
+  color: white;
+  width: fit-content;
+  padding: 3px;
+  border-radius: 3px;
+  transform: translateY(100%);
+  transition: transform 0.5s ease-in-out;
+  transition-delay: 0s;
+}
+.btn:hover + .ABBtn { 
+  transition-delay: 0.5s;
+  display: block;
+  transform: translateY(0);
+}

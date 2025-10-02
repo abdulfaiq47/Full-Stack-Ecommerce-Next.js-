@@ -1,0 +1,29 @@
+.container {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(39, 39, 39);
+  display: flex;
+}
+.left {
+  border-right: 2px solid white;
+  height: 100vw;
+  width: 20vw;
+}
+.right {
+  padding: 17px;
+  height: 100vh;
+  width: 80vw;
+}
+
+.about {
+  height: 120px;
+  display: flex;
+  gap: 9px;
+}
+
+.gh {
+  padding: 11px;
+  height: 90px;
+  width: 240px;
+  background-color: beige;
+}

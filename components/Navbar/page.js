@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <>
       <div className={style.aboveNav}>
-        <p>Pakistan's Best Online Shopping Destination</p>
+        <p>{"Pakistan's Best Online Shopping Destination"}</p>
         <ul>
           <li>Support</li>
           <li>|</li>
@@ -33,7 +33,7 @@ const Navbar = () => {
           <li>Blog</li>
           <li>|</li>
         </ul>
-        <img src="./bismillah.png" alt="" />
+          <Image width={150} height={26} src="./bismillah.png" alt="bismillah" />
       </div>
       <div className={style.navbar}>
         <div className={style.logo}>
@@ -84,11 +84,12 @@ const Navbar = () => {
           alt="Btn"
         /> */}
         <div className={`${style.Resmenu} `}>
-          <img width={150} height={26} src="./bismillah.png" alt="bismillah" />
+          <Image width={150} height={26} src="./bismillah.png" alt="bismillah" />
+         
 
           <hr />
 
-          <p>Pakistan's Best Online Shopping Destination</p>
+        <p>{"Pakistan's Best Online Shopping Destination"}</p>
           <ul>
             <li>Support</li>
 

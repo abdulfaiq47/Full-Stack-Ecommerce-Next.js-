@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import style from "./page.module.css";
 
-const dashboard = () => {
+const Dashboard = () => {
   const { data: session } = useSession();
   useEffect(() => {
     if (session) {
@@ -33,4 +33,4 @@ const dashboard = () => {
   );
 };
 
-export default dashboard;
+export default Dashboard;

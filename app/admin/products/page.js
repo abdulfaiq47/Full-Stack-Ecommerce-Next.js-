@@ -6,7 +6,7 @@ import style from "./page.module.css";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-const products = () => {
+const Products = () => {
   const [formData, setFormData] = useState({
     image: "",
     name: "",
@@ -89,4 +89,4 @@ const products = () => {
   );
 };
 
-export default products;
+export default Products;

@@ -4,6 +4,8 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
 
+export const dynamic = "force-dynamic"; // 👈 Add this
+
 function LoginContent() {
   const { data: session } = useSession();
   const searchParams = useSearchParams();

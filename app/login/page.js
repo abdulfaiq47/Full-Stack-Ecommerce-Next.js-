@@ -1,24 +1,18 @@
 "use client";
-import React from "react";
+import React, { useEffect, Suspense } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
-import { useEffect } from "react";
 
-export default function Login() {
+function LoginContent() {
   const { data: session } = useSession();
   const searchParams = useSearchParams();
 
   useEffect(() => {
-  if (searchParams.get("error") === "unauthorized") {
-    toast.error("You are not authorized to access that page")
-    
-   }
-
-  }, [searchParams])
-  
-
-  
+    if (searchParams.get("error") === "unauthorized") {
+      toast.error("You are not authorized to access that page");
+    }
+  }, [searchParams]);
 
   if (session) {
     return (
@@ -27,25 +21,22 @@ export default function Login() {
         <p>Name {session.user.name}</p>
         <p>Role: {session.user.role}</p>
         <p>Id: {session.user.id}</p>
-        <button
-          onClick={() => {
-            signOut();
-          }}
-        >
-          logout
-        </button>
+        <button onClick={() => signOut()}>Logout</button>
       </>
     );
   }
+
   return (
     <div>
-      <button
-        onClick={() => {
-          signIn("google");
-        }}
-      >
-        Login
-      </button>
+      <button onClick={() => signIn("google")}>Login</button>
     </div>
+  );
+}
+
+export default function Login() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <LoginContent />
+    </Suspense>
   );
 }

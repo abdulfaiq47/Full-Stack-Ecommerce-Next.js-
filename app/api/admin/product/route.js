@@ -8,7 +8,7 @@ export async function POST(req) {
   try {
     const session = await getServerSession(authOptions);
     
-    if (!session || !session.user.role === "admin") {
+    if (!session || session.user.role !== "admin") {
       return NextResponse.json(
         { success: false, message: "Not Authorized" },
         { status: 403 }

@@ -4,7 +4,8 @@
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
-      padding-top: 6px;
+  padding-top: 6px;
+  z-index: 1000;
 }
 .aboveNav ul {
   display: flex;
@@ -27,7 +28,8 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-      MARGIN-BOTTOM: 21PX;
+  margin-bottom: 21px;
+  z-index: 1000;
 }
 
 .searchBar {
@@ -81,10 +83,8 @@
 .Resnavbar {
   display: none;
 }
-.ResSearch{
-  
+.ResSearch {
   display: none;
-  
 }
 /* Responsive */
 @media screen and (max-width: 1136px) {
@@ -106,6 +106,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: #172237;
+    z-index: 1000;
   }
   .hamburger {
     z-index: 1001;
@@ -139,12 +140,13 @@
     transform: translateX(0);
   }
   .ResSearch {
-        MARGIN-BOTTOM: 21PX;
+    margin-bottom: 21px;
     background-color: #172237;
     justify-content: center;
     height: 8vh;
     display: flex;
     padding-top: 11px;
+    z-index: 1000;
   }
   .searchBar {
     display: flex;

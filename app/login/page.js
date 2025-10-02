@@ -4,8 +4,6 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
 
-export const dynamic = "force-dynamic"; // 👈 Add this
-
 function LoginContent() {
   const { data: session } = useSession();
   const searchParams = useSearchParams();
@@ -19,10 +17,11 @@ function LoginContent() {
   if (session) {
     return (
       <>
-        <p>Sign in AS {session.user.email}</p>
-        <p>Name {session.user.name}</p>
-        <p>Role: {session.user.role}</p>
-        <p>Id: {session.user.id}</p>
+        <p>Signed in as {session.user?.email}</p>
+        <p>Name: {session.user?.name}</p>
+        {/* role & id require custom session config */}
+        <p>Role: {session.user?.role}</p>
+        <p>Id: {session.user?.id}</p>
         <button onClick={() => signOut()}>Logout</button>
       </>
     );
@@ -37,7 +36,7 @@ function LoginContent() {
 
 export default function Login() {
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense fallback={<div>Loading...</div>}>
       <LoginContent />
     </Suspense>
   );

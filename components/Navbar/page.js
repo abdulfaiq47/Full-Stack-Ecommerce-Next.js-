@@ -33,7 +33,7 @@ const Navbar = () => {
           <li>Blog</li>
           <li>|</li>
         </ul>
-          <Image width={150} height={26} src="./bismillah.png" alt="bismillah" />
+          <Image width={150} height={26} src="/bismillah.png" alt="bismillah" />
       </div>
       <div className={style.navbar}>
         <div className={style.logo}>
@@ -84,7 +84,7 @@ const Navbar = () => {
           alt="Btn"
         /> */}
         <div className={`${style.Resmenu} `}>
-          <Image width={150} height={26} src="./bismillah.png" alt="bismillah" />
+          <Image width={150} height={26} src="/bismillah.png" alt="bismillah" />
          
 
           <hr />

@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import style from "./page.module.css";
+import Link from "next/link";
 
 const Dashboard = () => {
   const { data: session } = useSession();
@@ -16,7 +17,12 @@ const Dashboard = () => {
   return (
     <>
       <div className={style.container}>
-        <div className={style.left}></div>
+        <div className={style.left}>
+          <h2>Telemart</h2>
+          <ul>
+            <Link href={"/admin/products"}><li>Products</li></Link>
+          </ul>
+        </div>
         <div className={style.right}>
           <h1>Dashboard</h1>
           <br />

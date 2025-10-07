@@ -12,24 +12,42 @@ const Products = () => {
     name: "",
     price: 0,
     discount: 0,
+    category: "",
   });
+  const [File, setFile] = useState(null);
 
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
     },
   });
+  const handleFileChange = (e) => {
+    const selected = e.target.files[0];
+    if (selected) {
+      setFile(selected);
+    }
+  };
+
   const handlesubmit = async (e) => {
     e.preventDefault();
+    console.log(File);
     const { image, name, price, discount } = formData;
 
     try {
+      const formDataToSend = new FormData();
+
+      formDataToSend.append("name", formData.name);
+      formDataToSend.append("price", formData.price);
+      formDataToSend.append("discount", formData.discount);
+      formDataToSend.append("category", formData.category);
+      if (File) formDataToSend.append("image", File);
+
       let fetc = await fetch("/api/admin/product", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        // headers: {
+        //   "Content-Type": "application/json",
+        // },
+        body: formDataToSend,
       });
       let result = await fetc.json();
 
@@ -41,7 +59,6 @@ const Products = () => {
       }
     } catch (error) {
       console.log("error", error);
-
     }
   };
   return (
@@ -58,11 +75,11 @@ const Products = () => {
             variant="outlined"
           />
           <TextField
-            value={formData.image}
+            value={formData.category}
             onChange={(e) =>
-              setFormData({ ...formData, image: e.target.value })
+              setFormData({ ...formData, category: e.target.value })
             }
-            label="Product Image"
+            label="Product Category"
             variant="outlined"
           />
           <TextField
@@ -81,6 +98,13 @@ const Products = () => {
             label="Product discount"
             variant="outlined"
           />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            style={{ color: "white" }}
+          />
+          {File && <p style={{ color: "gray" }}>Selected file: {File.name}</p>}
           <button type="submit">Submit</button>
         </form>
       </div>

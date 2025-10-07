@@ -35,7 +35,7 @@
 .searchBar {
   display: flex;
   align-items: center;
-  width: 50%;
+  width: 542px;
   margin: 0 8px;
 }
 
@@ -51,6 +51,7 @@
   border-radius: 4px 0 0 4px;
   outline: none;
   box-sizing: border-box;
+
 }
 
 .searchBox:focus {

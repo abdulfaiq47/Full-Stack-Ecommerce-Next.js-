@@ -6,16 +6,15 @@ export async function GET(req) {
   try {
     await connectDB();
     const { searchParams } = new URL(req.url);
-    const query = searchParams.get("q") || ""; // get ?q=keyword
+    const query = searchParams.get("cate") || "";
 
-    // Search in name or description (case-insensitive)
-const products = await productmodels.find({
-  $or: [
-    { name: { $regex: query, $options: "i" } },
-    { category: { $regex: query, $options: "i" } }
-  ]
-});
-    return NextResponse.json({ success: true, products });
+    const categories = await productmodels.find({
+      $or: [
+        { category: { $regex: query, $options: "i" } },
+        { name: { $regex: query, $options: "i" } },
+      ],
+    });
+    return NextResponse.json({ success: true, categories });
   } catch (error) {
     console.error("❌ API Error:", error);
     return NextResponse.json(

@@ -3,6 +3,8 @@ import React, { useEffect, Suspense } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
+import style from "./page.module.css";
+import Image from "next/image";
 
 function LoginContent() {
   const { data: session } = useSession();
@@ -17,19 +19,36 @@ function LoginContent() {
   if (session) {
     return (
       <>
-        <p>Signed in as {session.user?.email}</p>
-        <p>Name: {session.user?.name}</p>
-        {/* role & id require custom session config */}
-        <p>Role: {session.user?.role}</p>
-        <p>Id: {session.user?.id}</p>
-        <button onClick={() => signOut()}>Logout</button>
+        <div className={style.container}>
+        <div className={style.card}>
+          <h2>Welcome 👋</h2>
+          <p>Signed in as: <strong>{session.user?.email}</strong></p>
+          <p>Name: {session.user?.name}</p>
+          <p>Role: {session.user?.role || "User"}</p>
+          <p>ID: {session.user?.id || "N/A"}</p>
+          <button className={style.logoutbtn} onClick={() => signOut()}>
+            Logout
+          </button>
+        </div>
+      </div>
+    
       </>
     );
   }
 
   return (
     <div>
-      <button onClick={() => signIn("google")}>Login</button>
+      <button className={style.googlebtn} onClick={() => signIn("google")}>
+        {" "}
+        <Image
+          src="/googlelogo.svg"
+          height={30}
+          width={40}
+          style={{ marginLeft: "-9px" }}
+          alt="Google Logo"
+        ></Image>{" "}
+        Sign in with Google
+      </button>
     </div>
   );
 }

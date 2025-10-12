@@ -1,28 +1,25 @@
 "use client";
-import React from "react";
-import style from "./page.module.css";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import style from "./page.module.css";
 
 const TogeltoDark = () => {
   const [open, setopen] = useState(false);
   const [dark, setDark] = useState(false);
 
-  const handleClick = () => {
-
-    setopen(!open);
-  };
+  const handleClick = () => setopen(!open);
   const handleDark = () => {
     toast("Dark Mode 🌙");
+    setDark(true);
+  };
+  const handlelight = () => {
+    toast("Light Mode 🌞");
     setDark(false);
   };
-  const handlelight =()=>{
-    toast("Light Mode 🌞")
-    setDark(true);
-  }
+
   useEffect(() => {
-    if (dark === false) {
+    if (dark) {
       document.body.classList.add("DarkTheme");
       document.body.classList.remove("LightTheme");
     } else {
@@ -32,7 +29,7 @@ const TogeltoDark = () => {
   }, [dark]);
 
   return (
-    <div>
+    <div className={style.wrapper}>
       <div className={style.btn}>
         <Image
           onClick={handleClick}
@@ -42,19 +39,34 @@ const TogeltoDark = () => {
           alt="Btn"
         />
       </div>
-      <p className={style.ABBtn} >Setting</p>
+
+      <p className={style.ABBtn}>Setting</p>
+
       <div className={`${style.SliderRight} ${open ? style.active : ""}`}>
         <div className={style.header}></div>
-        gsDgsgs
-        <button
-          onClick={() => {
-            setopen(false);
-          }}
-        >
+
+        <button className={style.closeBtn} onClick={() => setopen(false)}>
           Close
         </button>
-        <div className={style.dark}><button onClick={handleDark} >Dark</button></div>
-        <div className={style.light}><button onClick={handlelight} >Light</button></div>
+
+        {/* --- Theme Toggle --- */}
+        <div className={style.themeToggle}>
+          <button
+            className={`${style.themeCard} ${!dark ? style.active : ""}`}
+            onClick={handlelight}
+          >
+            <div className={style.icon}>🌞</div>
+            <span>Light</span>
+          </button>
+
+          <button
+            className={`${style.themeCard} ${dark ? style.active : ""}`}
+            onClick={handleDark}
+          >
+            <div className={style.icon}>🌙</div>
+            <span>Dark</span>
+          </button>
+        </div>
       </div>
     </div>
   );

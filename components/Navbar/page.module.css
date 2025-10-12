@@ -15,6 +15,10 @@
 .aboveNav p {
   font-size: small;
 }
+.aboveNav a {
+  text-decoration: none;
+  color: white;
+}
 .aboveNav ul li {
   list-style: none;
   font-size: small;
@@ -51,7 +55,6 @@
   border-radius: 4px 0 0 4px;
   outline: none;
   box-sizing: border-box;
-
 }
 
 .searchBox:focus {
@@ -75,6 +78,26 @@
 .searchBtn:hover {
   background-color: #f97316;
 }
+.list ul {
+  display: flex;
+  gap: 22px;
+}
+.list ul li {
+  list-style: none;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.list li a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  gap: 9px;
+}
 
 .icon {
   width: 18px;
@@ -87,6 +110,85 @@
 .ResSearch {
   display: none;
 }
+
+/* ------------------------ */
+.ElecGala {
+  box-shadow: 0 0 7px;
+  padding-left: 5px;
+  padding-top: 3px;
+  margin-bottom: 22px;
+  border-radius: 5px;
+  padding-bottom: 6px;
+  margin-left: 13px;
+  width: 95%;
+}
+.ElecGala h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 13px;
+}
+.elecBanner {
+  background-color: orange;
+border-radius: 13px;
+  width: 103px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.elecBanner p {
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+}
+.Elecbody {
+  display: flex;
+  gap: 20px;
+}
+.ratingbadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #22c55e; /* bg-green-500 */
+  color: white;
+  font-size: 0.75rem; /* text-xs */
+  padding: 0.25rem 0.25rem; /* py-1 px-1 */
+  border-radius: 0.375rem; /* rounded-md */
+  font-family: "Roboto", sans-serif; /* roboto-new */
+  gap: 3px;
+  width: 44px;
+}
+
+
+.productCard {
+  background: white;
+  width: 170px;
+  border-radius: 5px;
+  padding: 11px;
+
+  display: flex;
+  flex-direction: column;
+  color: black;
+  height: 366px;
+}
+.Prop {
+  margin-top: 8px;
+  height: 40px;
+  color: green;
+  font-size: 14px;
+  font-weight: 500;
+}
+.btn {
+  background-color: #22c55e;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 2px;
+  cursor: pointer;
+}
+.ProImg {
+  align-items: center;
+}
+/* ------------------- */
 /* Responsive */
 @media screen and (max-width: 1136px) {
   .aboveNav ul {
@@ -134,6 +236,12 @@
     flex-direction: column;
     gap: 8px;
   }
+  .Resmenu ul a{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    gap: 9px;
+  }
   .Resmenu img {
     margin-left: 41px;
   }
@@ -174,4 +282,13 @@
     font-size: 16px;
     color: #666;
   }
+}
+@media (max-width: 375px) {
+
+  .Elecbody {
+    justify-content: center;
+  }
+  /* .banner-container {
+    height: 150px;
+  } */
 }

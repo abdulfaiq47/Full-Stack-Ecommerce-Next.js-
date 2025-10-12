@@ -27,7 +27,7 @@ const Cart = () => {
       }
     };
     handlefetch();
-  }, [session]);
+  }, [status]);
 
   return (
     <div

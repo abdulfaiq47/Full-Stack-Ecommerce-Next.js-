@@ -17,7 +17,7 @@ function Slideshow({ children }) {
         }, 5000)
       );
     }
-  }, [slideDone]);
+  }, [slideDone,slideNext]);
 
   const slideNext = () => {
     setActiveIndex((val) => {

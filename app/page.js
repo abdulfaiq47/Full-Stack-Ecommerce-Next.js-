@@ -69,7 +69,7 @@ export default function Home() {
               </li>
               <li onClick={() => getCategories("mensfashion")}>
                 <Image src="/mens.png" alt="mens" width={20} height={20} />{" "}
-                Men's Fashion
+                {"Men's Fashion"}
               </li>
             </ul>
           </div>
@@ -123,14 +123,14 @@ export default function Home() {
               </li>
               <li onClick={() => getCategories("mensfashion")}>
                 <Image src="/mens.png" alt="mens" width={48} height={48} />{" "}
-                Men's Fashion
+                {"Men's Fashion"}
               </li>
             </ul>
           </div>
         {GetCate?.length > 0 && (
           <div>
             {GetCate.map((prod) => (
-              <div className={styles.ElecGala}>
+              <div key={prod.category} className={styles.ElecGala}>
                 <h2>{prod.category}</h2>
 
                 <div className={styles.Elecbody}>

@@ -7,8 +7,10 @@ import { toast } from "react-toastify";
 import Slideshow from "@/components/Slidebar/page";
 import { SlideImage } from "./image";
 import { FaStar } from "react-icons/fa";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
+  const { data: session } = useSession();
   const [categories, setcategories] = useState([]);
   const [GetCate, setGetCate] = useState([]);
   useEffect(() => {
@@ -23,6 +25,9 @@ export default function Home() {
   }, []);
 
   const handleAddtocart = async (product) => {
+    if (!session) {
+      return toast.error("Please login to add items to cart");
+    }
     const res = await fetch("/api/addtocart", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -107,26 +112,24 @@ export default function Home() {
           </div>
         </div>
         <div className={styles.RestopCate}>
-
-            <ul>
-              <li onClick={() => getCategories("elec")}>
-                <Image src="/mob20.png" alt="mobile" width={48} height={48} />
-                Mobiles & Tablets
-              </li>
-              <li onClick={() => getCategories("pc")}>
-                <Image src="/pc.png" alt="pc" width={48} height={48} /> Computer
-                & Gaming
-              </li>
-              <li onClick={() => getCategories("tv")}>
-                <Image src="/tv.png" alt="tv" width={48} height={48} /> TV &
-                Video
-              </li>
-              <li onClick={() => getCategories("mensfashion")}>
-                <Image src="/mens.png" alt="mens" width={48} height={48} />{" "}
-                {"Men's Fashion"}
-              </li>
-            </ul>
-          </div>
+          <ul>
+            <li onClick={() => getCategories("elec")}>
+              <Image src="/mob20.png" alt="mobile" width={48} height={48} />
+              Mobiles & Tablets
+            </li>
+            <li onClick={() => getCategories("pc")}>
+              <Image src="/pc.png" alt="pc" width={48} height={48} /> Computer &
+              Gaming
+            </li>
+            <li onClick={() => getCategories("tv")}>
+              <Image src="/tv.png" alt="tv" width={48} height={48} /> TV & Video
+            </li>
+            <li onClick={() => getCategories("mensfashion")}>
+              <Image src="/mens.png" alt="mens" width={48} height={48} />{" "}
+              {"Men's Fashion"}
+            </li>
+          </ul>
+        </div>
         {GetCate?.length > 0 && (
           <div>
             {GetCate.map((prod) => (

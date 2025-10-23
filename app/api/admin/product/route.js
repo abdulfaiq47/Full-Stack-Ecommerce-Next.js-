@@ -1,3 +1,6 @@
+// ✅ Force Node.js runtime (Cloudinary needs Node, not Edge)
+export const runtime = "nodejs";
+
 import { connectDB } from "@/lib/mongodb";
 import productmodels from "@/Models/productmodels";
 import { getServerSession } from "next-auth";
@@ -5,14 +8,14 @@ import { NextResponse } from "next/server";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { v2 as cloudinary } from "cloudinary";
 
-// ✅ Cloudinary auto-configures if CLOUDINARY_URL is present
+// ✅ Cloudinary auto-config from CLOUDINARY_URL
 cloudinary.config({
-  secure: true, // ensures https URLs
+  secure: true,
 });
 
 export async function POST(req) {
   try {
-    // ✅ 1. Verify admin
+    // ✅ Check admin access
     const session = await getServerSession(authOptions);
     if (!session || session?.user?.role !== "admin") {
       return NextResponse.json(
@@ -21,10 +24,10 @@ export async function POST(req) {
       );
     }
 
-    // ✅ 2. Connect DB
+    // ✅ Connect MongoDB
     await connectDB();
 
-    // ✅ 3. Parse form data
+    // ✅ Get form data
     const formData = await req.formData();
     const file = formData.get("image");
     const name = formData.get("name");
@@ -39,23 +42,24 @@ export async function POST(req) {
       });
     }
 
-    // ✅ 4. Convert file to Base64 and upload to Cloudinary
+    // ✅ Convert file to Base64 string
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
     const base64 = buffer.toString("base64");
     const dataUri = `data:${file.type};base64,${base64}`;
 
-    const uploadResult = await cloudinary.uploader.upload(dataUri, {
-      folder: "ecommerce_products", // optional
+    // ✅ Upload to Cloudinary
+    const upload = await cloudinary.uploader.upload(dataUri, {
+      folder: "ecommerce_products",
     });
 
-    // ✅ 5. Save product in DB
+    // ✅ Save to MongoDB
     const product = await productmodels.create({
       name,
       price,
       discount,
       category,
-      image: uploadResult.secure_url,
+      image: upload.secure_url,
     });
 
     return NextResponse.json(
@@ -70,4 +74,3 @@ export async function POST(req) {
     );
   }
 }
-     F

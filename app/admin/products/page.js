@@ -55,7 +55,8 @@ const Products = () => {
         toast.success("Done Sucessfully ");
         setFormData({ image: "", name: "", price: 0, discount: 0 });
       } else {
-        toast.error(result.message || "Something went wrong");
+        toast.error(result.message);
+        console.log(result.message)
       }
     } catch (error) {
       console.log("error", error);

@@ -46,7 +46,7 @@ export async function POST(req) {
 
     // ✅ Write file to /public/uploads folder
     await writeFile(filePath, buffer);
-    console.log("✅ Image saved to:", filePath);
+
 
     // ✅ Save product info in MongoDB
     const product = await productmodels.create({

@@ -158,6 +158,17 @@ const Navbar = () => {
                 />
               </Link>
             </li>
+            <li>
+              <Link href={"/admin/dashboard"}>
+                Admin{" "}
+                <Image
+                  src={"/admin.svg"}
+                  alt="cart"
+                  width={13.06}
+                  height={14.92}
+                />
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

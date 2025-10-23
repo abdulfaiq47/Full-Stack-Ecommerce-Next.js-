@@ -60,7 +60,7 @@ export default function Home() {
           <div className={styles.topCate}>
             <h4>Top Categories</h4>
             <ul>
-              <li onClick={() => getCategories("elec")}>
+              <li onClick={() => getCategories("mobile")}>
                 <Image src="/mob20.png" alt="mobile" width={20} height={20} />
                 Mobiles & Tablets
               </li>
@@ -133,7 +133,7 @@ export default function Home() {
         {GetCate?.length > 0 && (
           <div>
             {GetCate.map((prod) => (
-              <div key={prod.category} className={styles.ElecGala}>
+              <div key={prod._id} className={styles.ElecGala}>
                 <h2>{prod.category}</h2>
 
                 <div className={styles.Elecbody}>
